@@ -13,7 +13,7 @@ Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Co
 - Codable 
 
 # WalkThrough Pages
-![alt-text-1](Documentation/page-1.png "First Page") ![alt-text-2](Documentation/page-2.png "Second Page") ![alt-text-3](Documentation/page-3.png "Third Page")
+<img src = "Documentation/page-1.png" width ="200" /> <img src = "Documentation/page-2.png" width ="200" /> <img src = "Documentation/page-3.png" width ="200" />
 
 # Networking 
 The app make request to the API for new data using the URLSession GET request method to get the data to be populated in the tableview.

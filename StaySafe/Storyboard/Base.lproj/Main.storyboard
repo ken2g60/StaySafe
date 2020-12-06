@@ -443,7 +443,7 @@
                             <outlet property="delegate" destination="wcw-5r-4hW" id="pSj-Yf-mY0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="About" image="info.circle" catalog="system" id="Ke0-ZU-EGG"/>
+                    <tabBarItem key="tabBarItem" title="About" image="info.circle.fill" catalog="system" id="Ke0-ZU-EGG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mf-MO-9hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -660,7 +660,7 @@
     <resources>
         <image name="arrow.clockwise.icloud.fill" catalog="system" width="128" height="88"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="search" width="889" height="888"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

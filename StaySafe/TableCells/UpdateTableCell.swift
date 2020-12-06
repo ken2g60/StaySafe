@@ -13,6 +13,7 @@ class UpdateTableCell: UITableViewCell {
     @IBOutlet weak var cases: UILabel!
     @IBOutlet weak var county: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,6 +12,6 @@ struct ResponseData {
     var recovered: Int?
     var county: String?
     var cases_per_100k: Float?
-    var cases: Int?
+    var cases: Int!
     var ade: Int?
 }

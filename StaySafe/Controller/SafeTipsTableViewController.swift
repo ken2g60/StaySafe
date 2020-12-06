@@ -9,81 +9,93 @@ import UIKit
 
 class SafeTipsTableViewController: UITableViewController {
 
+    var ruleStatus: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTipsTableViewCell", for: indexPath) as! SafeTipsTableViewCell
+        
+       
+        if ruleStatus == "green" {
+            if indexPath.row == 0 {
+                cell.safeTipName.text = "Limitations of face-to-face contact in public spaces"
+                cell.safeTipImage.image  = UIImage(named: "keep-distance")
+            }
+            
+            if indexPath.row == 1 {
+                cell.safeTipName.text = "Private events ( i.e. weddings etc. ) with a maximum of 100 participants in closed spaces"
+                cell.safeTipImage.image  = UIImage(named: "reminder")
+            }
+            
+            if indexPath.row == 2 {
+                cell.safeTipName.text = "Wearing a mask is mandatory when using public transportation, going shopping, eating and drinking in restaurants, bars."
+                cell.safeTipImage.image  = UIImage(named: "medical-mask")
+            }
+        }
+        
+        if ruleStatus == "yellow" {
+            if indexPath.row == 0 {
+                cell.safeTipName.text = "Private parties and contacts: no more than two households or ten people"
+                cell.safeTipImage.image  = UIImage(named: "no-group")
+            }
+            
+            if indexPath.row == 1 {
+                cell.safeTipName.text = "Wearing a mask is mandatory in heavily frequented spaces."
+                cell.safeTipImage.image  = UIImage(named: "medical-mask")
+            }
+            
+            if indexPath.row == 2 {
+                cell.safeTipName.text = "Curfew and ban on selling as well as consuming alcohol in public spaces."
+                cell.safeTipImage.image  = UIImage(named: "curfew")
+            }
+        }
+        
+        
+        if ruleStatus == "red" {
+            if indexPath.row == 0 {
+                cell.safeTipName.text = "Private parties and contacts: no more than 5 households or five people"
+                cell.safeTipImage.image  = UIImage(named: "no-group")
+            }
+            
+            if indexPath.row == 1 {
+                cell.safeTipName.text = "Wearing a mask is mandatory in heavily frequented spaces."
+                cell.safeTipImage.image  = UIImage(named: "medical-mask")
+            }
+            
+            if indexPath.row == 2 {
+                cell.safeTipName.text = "Curfew and ban on selling as well as consuming alcohol in public spaces "
+                cell.safeTipImage.image  = UIImage(named: "curfew")
+            }
+        }
+        if ruleStatus == "dark-red" {
+            
+            if indexPath.row == 0 {
+                cell.safeTipName.text = "Events ( e.g. club meetings, sporting events, cultural events, etc. ) must not exceed 50 persons"
+                cell.safeTipImage.image  = UIImage(named: "reminder")
+            }
+            
+            if indexPath.row == 1 {
+                cell.safeTipName.text = "Closing time for food / gastronomy outlets, ban on alcohol sales and alcohol consumption sales in specific public places"
+                cell.safeTipImage.image  = UIImage(named: "curfew")
+            }
+            
+            if indexPath.row == 2 {
+                cell.safeTipName.text = .none
+                cell.safeTipImage.image = .none
+            }
+        }
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

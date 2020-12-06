@@ -50,6 +50,4 @@ This display to users by using specific keywords in the searchbar to get the dat
 
 # Safe Zone Detail View 
 Displays to the users satefy measures they need to use to protect themselves and avoid the spread of the virus.
-
-![alt-text-1](image1.png "title-1")
-
+<img src="Documentation/safe-zone-detail.png" width=270 height=480>

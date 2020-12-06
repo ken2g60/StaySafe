@@ -11,11 +11,6 @@ Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Co
 - Get Users Location using CoreLocation
 - UITableView
 - Codable
-<<<<<<< HEAD
-- External libraries: 
-    - MBProgressHUD
-    - Firebase Message
-=======
 
 Clone the Project 
 `git clone https://github.com/ken2g60/StaySafe.git`
@@ -23,7 +18,6 @@ Clone the Project
 Update the cocopod 
 `pod update`
 
->>>>>>> c5dc890b925c31cc427080ce124cb4bed9c28b84
 
 # WalkThrough Pages
 <table>
@@ -63,10 +57,4 @@ This display to users by using specific keywords in the searchbar to get the dat
 
 # Safe Zone Detail View 
 Displays to the users satefy measures they need to use to protect themselves and avoid the spread of the virus.
-<<<<<<< HEAD
-
-![alt-text-1](image1.png "title-1")
-
-=======
 <img src="Documentation/safe-zone-detail.png" width=270 height=480>
->>>>>>> c5dc890b925c31cc427080ce124cb4bed9c28b84

@@ -1,12 +1,18 @@
 
 /* Class = "UILabel"; text = "County"; ObjectID = "0sF-Zr-frr"; */
-"0sF-Zr-frr.text" = "County";
+"0sF-Zr-frr.text" = "Bezirk";
+
+/* Class = "UILabel"; text = "About StaySafe"; ObjectID = "2dX-yO-AIw"; */
+"2dX-yO-AIw.text" = "Über Bleib sicher";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "4kl-Oj-UWt"; */
 "4kl-Oj-UWt.text" = "Label";
 
+/* Class = "UILabel"; text = "0000-0000-0000"; ObjectID = "7W1-q6-6jh"; */
+"7W1-q6-6jh.text" = "0000-0000-0000";
+
 /* Class = "UITabBarItem"; title = "Home"; ObjectID = "8bg-5K-MdE"; */
-"8bg-5K-MdE.title" = "Home";
+"8bg-5K-MdE.title" = "Zuhause";
 
 /* Class = "UITableViewController"; title = "UpdateViewController"; ObjectID = "AAC-6S-zXv"; */
 "AAC-6S-zXv.title" = "UpdateViewController";
@@ -14,17 +20,32 @@
 /* Class = "UILabel"; text = "Status"; ObjectID = "Bgg-Zv-hem"; */
 "Bgg-Zv-hem.text" = "Status";
 
-/* Class = "UITabBarItem"; title = "Update"; ObjectID = "DWx-Rh-Psb"; */
-"DWx-Rh-Psb.title" = "Update";
+/* Class = "UILabel"; text = "Label"; ObjectID = "CpZ-rO-e2U"; */
+"CpZ-rO-e2U.text" = "Label";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "DoK-K0-M3f"; */
-"DoK-K0-M3f.text" = "Label";
+/* Class = "UITableViewController"; title = "SafeTips"; ObjectID = "D0h-Qf-f8X"; */
+"D0h-Qf-f8X.title" = "SafeTips";
+
+/* Class = "UILabel"; text = "Case"; ObjectID = "D4I-oN-ZWh"; */
+"D4I-oN-ZWh.text" = "Fälle";
+
+/* Class = "UILabel"; text = "Case"; ObjectID = "HDA-bR-Oxe"; */
+"HDA-bR-Oxe.text" = "Fälle";
+
+/* Class = "UIViewController"; title = "emptySafeZonesView"; ObjectID = "HVJ-mZ-9lx"; */
+"HVJ-mZ-9lx.title" = "emptySafeZonesView";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "JIr-FX-faf"; */
 "JIr-FX-faf.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Kdd-Ho-j1N"; */
 "Kdd-Ho-j1N.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "About"; ObjectID = "Ke0-ZU-EGG"; */
+"Ke0-ZU-EGG.title" = "Über";
+
+/* Class = "UILabel"; text = "Cases"; ObjectID = "NBj-J5-OfF"; */
+"NBj-J5-OfF.text" = "Fälle";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Ohc-WX-59T"; */
 "Ohc-WX-59T.text" = "Label";
@@ -33,7 +54,16 @@
 "Qeo-Uf-kGC.text" = "Label";
 
 /* Class = "UILabel"; text = "Cases"; ObjectID = "SZc-hp-vhN"; */
-"SZc-hp-vhN.text" = "Cases";
+"SZc-hp-vhN.text" = "Fälle";
+
+/* Class = "UILabel"; text = "StaySafe is an app that alert users about ciritical information on covid-19 giving users safe zones to visit and alert friends and family."; ObjectID = "XIe-uA-n5G"; */
+"XIe-uA-n5G.text" = "Bleib sicher ist eine App, die Benutzer über kritische Informationen zu covid-19 informiert und Benutzern sichere Zonen zum Besuchen und Benachrichtigen von Freunden und Familienmitgliedern bietet.";
+
+/* Class = "UILabel"; text = "Colors: Green, Yellow,  Red, Dark-Red"; ObjectID = "YoO-9g-3ZK"; */
+"YoO-9g-3ZK.text" = "Farben: Grün, Gelb,  rot, Dunkel-rot";
+
+/* Class = "UITabBarItem"; title = "Safe Zone"; ObjectID = "caV-5e-CbA"; */
+"caV-5e-CbA.title" = "Safe Zone";
 
 /* Class = "UILabel"; text = "lastUpdated"; ObjectID = "f6T-uL-xne"; */
 "f6T-uL-xne.text" = "lastUpdated";
@@ -41,14 +71,23 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "fDP-B7-hBp"; */
 "fDP-B7-hBp.text" = "Label";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "hGe-Os-hKn"; */
-"hGe-Os-hKn.text" = "Label";
+/* Class = "UILabel"; text = "County"; ObjectID = "hGe-Os-hKn"; */
+"hGe-Os-hKn.text" = "County";
 
-/* Class = "UIViewController"; title = "HomeDetailViewController"; ObjectID = "jLY-iG-Kes"; */
-"jLY-iG-Kes.title" = "HomeDetailViewController";
+/* Class = "UILabel"; text = "30"; ObjectID = "mDW-ja-tMa"; */
+"mDW-ja-tMa.text" = "30";
 
-/* Class = "UITabBarItem"; title = "About"; ObjectID = "msS-Zj-ux2"; */
-"msS-Zj-ux2.title" = "About";
+/* Class = "UILabel"; text = "Search Safe Zones"; ObjectID = "piG-om-eqd"; */
+"piG-om-eqd.text" = "Search Safe Zones";
 
-/* Class = "UIButton"; normalTitle = "HealthInfo"; ObjectID = "ras-T9-AnQ"; */
-"ras-T9-AnQ.normalTitle" = "HealthInfo";
+/* Class = "UILabel"; text = "Status"; ObjectID = "vfM-84-gtT"; */
+"vfM-84-gtT.text" = "Status";
+
+/* Class = "UILabel"; text = "Support Health Line"; ObjectID = "xHg-KG-eYP"; */
+"xHg-KG-eYP.text" = "Unterstützen Sie Health Line";
+
+/* Class = "UILabel"; text = "LocationName"; ObjectID = "xUe-JA-fWO"; */
+"xUe-JA-fWO.text" = "LocationName";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "xcg-i9-b08"; */
+"xcg-i9-b08.text" = "Location";

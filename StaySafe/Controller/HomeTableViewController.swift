@@ -6,18 +6,31 @@
 //
 
 import UIKit
-import SwiftyJSON
 import MBProgressHUD
 import UserNotifications
+import CoreLocation
 
 class HomeTableViewController: UITableViewController {
     
     var responseData = [ResponseData]()
     var searchController: UISearchController!
+    var locationManager = CLLocationManager()
+    
+    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var locationCase: UILabel!
+    var locationDashboard: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         coronaApiEndpoint()
+        configureDashboardLocation(location: locationDashboard)
+        // location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +89,9 @@ class HomeTableViewController: UITableViewController {
                 var casesData = ResponseData()
                 casesData.last_update = updates.attributes.last_update
                 casesData.recovered = updates.attributes.recovered
-                casesData.county = updates.attributes.county
+                
+                let country = String(updates.attributes.county!)
+                casesData.county = String(country.dropFirst(2))
                 casesData.cases_per_100k = updates.attributes.cases_per_100k
                 casesData.cases = updates.attributes.cases
                 casesData.ade = updates.attributes.ade
@@ -97,10 +112,10 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeUpdates", for: indexPath) as! HomeTableCell
             
-        cell.cases.text = "\(String(describing: responseData[indexPath.row].cases))"
+        cell.cases.text = String(responseData[indexPath.row].cases)
         cell.county.text = responseData[indexPath.row].county
         cell.last_update.text = responseData[indexPath.row].last_update
-        cell.statusImage.image = UIImage(named: "alert")
+        cell.statusImage.image = UIImage(named: "virus")
         return cell
     }
     
@@ -139,12 +154,66 @@ class HomeTableViewController: UITableViewController {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
+
+    func configureDashboardLocation(location: String){
+        let url =  "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=county='\(location)'&outFields=death_rate,cases,deaths,cases_per_100k,county,last_update,recovered,cases_per_population,cases7_per_100k&returnGeometry=true&outSR=4326&f=json"
+        
+        
+        let safeURL = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        let task = URLSession.shared.dataTask(with: URL(string: safeURL)!) { (data, response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                self.handleError(title: "Error", message: "Something Went Wrong")
+            }
+            
+            if let data = data {
+                print(data)
+            }
+            
+        }
+        task.resume()
+    
+    }
+    
+    
     func handleError(title: String, message: String) {
         let app = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         app.addAction(okButton)
         self.present(app, animated: true, completion: nil)
     }
+    
 
 
+}
+
+
+extension HomeTableViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.first != nil {
+            guard let firstLocation = locations.first else {
+                return
+            }
+            
+            CLGeocoder().reverseGeocodeLocation(firstLocation) { places, _ in
+               // 3
+               guard let firstPlace = places?.first else {
+                   return
+               }
+                self.locationName.text = String(firstPlace.name!)
+             }
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error \(error.localizedDescription)")
+    }
+    
 }

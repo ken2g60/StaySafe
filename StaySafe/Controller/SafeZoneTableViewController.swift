@@ -6,92 +6,133 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class SafeZoneTableViewController: UITableViewController, UISearchResultsUpdating {
+class SafeZoneTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
   
     
- 
-    var responseData = [ResponseData]()
-    var searchController: UISearchController!
+    @IBOutlet var emptySafeZoneView: UIView!
+    var responseData = [SafeZone]()
+     var searchController: UISearchController!
+    
+
+    var searchData: [String]!
+    var safeZoneStatus: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // searchBar.delegate = self
-        // searchBar.search = self
-        // configureSearch(keyword: searchBar.searchTextField.text!)
-        
+    
         searchController = UISearchController(searchResultsController: nil)
-        
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Safe Zones"
-        tableView.tableHeaderView = searchController.searchBar
+        self.definesPresentationContext = true
+        self.tableView.tableHeaderView = searchController.searchBar
+        
+        tableView.backgroundView = emptySafeZoneView
+        tableView.backgroundView?.isHidden = true
+
     }
     
-    func configureSearch(keyword: String) {
-        print(keyword)
-    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        if responseData.count > 0 {
+            tableView.backgroundView?.isHidden = true
+            tableView.separatorStyle = .singleLine
+        } else {
+            tableView.backgroundView?.isHidden = false
+            tableView.separatorStyle = .none
+        }
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return responseData.count
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        print(text.lowercased())
+   
+        switch text.lowercased() {
+        
+        case "green":
+            self.safe_zone(zone: "green")
+            
+        case "yellow":
+            self.safe_zone(zone: "yellow")
+            
+        case "red":
+            self.safe_zone(zone: "red")
+            
+        case "dark-red":
+            self.safe_zone(zone: "dark-red")
+            
+        default:
+            return
+        }
+        
         if text.isEmpty {
             self.handleError(title: "Error", message: "No Safe Zone e.g green, yellow, red, dark_red")
         }
-        // default value
-        // self.safe_zone(zone: text.lowercased(), status: 10)
-    }
         
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("DidChangeText \(searchText)")
+    }
+      
 
-    func safe_zone(zone: String, status: Int) {
+    func safe_zone(zone: String) {
        
         switch zone {
         case "green":
-            return checkSafeZone(zone: zone, status: status)
+            return checkSafeZone(zone: zone)
         case "red":
-            return checkSafeZone(zone: zone, status: status)
+            return checkSafeZone(zone: zone)
         case "yellow":
-            return checkSafeZone(zone: zone, status: status)
-        case "dark_red":
-            return checkSafeZone(zone: zone, status: status)
+            return checkSafeZone(zone: zone)
+        case "dark-red":
+            return checkSafeZone(zone: zone)
         default:
-            fatalError("Zone Not Found")
+            print("Zone Not Found")
         }
     }
     
-    func checkSafeZone(zone:String, status: Int){
+    func checkSafeZone(zone:String){
         
         switch zone {
         case "green":
-            return self.makeAPIRequest()
+            safeZoneStatus = "green"
+            return self.makeAPIRequest(zone: "green", incidence: 35)
         case "yellow":
-            return self.makeAPIRequest()
+            safeZoneStatus = "yellow"
+            return self.makeAPIRequest(zone: "yellow", incidence: Int.random(in: 35...50))
         case "red":
-            return self.makeAPIRequest()
-        case "dark_red":
-            return self.makeAPIRequest()
+            safeZoneStatus = "red"
+            return self.makeAPIRequest(zone: "red", incidence: 50)
+        case "dark-red":
+            safeZoneStatus = "dark-red"
+            return self.makeAPIRequest(zone: "dark-red", incidence: 50)
         default:
-            fatalError("Zone Not Found")
+            print("Zone Not Found")
         }
     }
 
 
     
     
-    func makeAPIRequest(){
-        let url = URL(string: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where>\(10)outFields=cases,deaths,last_update,recovered,county,cases_per_100k&outSR=4326&f=json")
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+    func makeAPIRequest(zone: String, incidence: Int){
+        
+        let api = "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=cases>\(incidence)&outFields=cases,deaths,last_update,recovered,county,cases_per_100k&outSR=4326&f=json"
+        
+        
+        let safeURL = api.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+            
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let task = URLSession.shared.dataTask(with: URL(string: safeURL)!) { (data, response, error) in
             
             if let error = error {
                 self.handleError(title: "Error", message: "Check Your Internet Connection \(error.localizedDescription)")
@@ -99,50 +140,64 @@ class SafeZoneTableViewController: UITableViewController, UISearchResultsUpdatin
             
             if let data = data {
                 self.responseData = self.parseJSONData(data: data)
+                
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
             }
         }
         task.resume()
     }
 
-    func parseJSONData(data: Data) -> [ResponseData] {
-        var responseCasesModel = [ResponseData]()
+    func parseJSONData(data: Data) -> [SafeZone] {
+        var responseCasesModel = [SafeZone]()
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             let newsUpdateDataStore = try decoder.decode(Root.self, from: data)
-            for updates in newsUpdateDataStore.features {
-                var casesData = ResponseData()
-                casesData.last_update = updates.attributes.last_update
-                casesData.recovered = updates.attributes.recovered
-                casesData.county = updates.attributes.county
-                casesData.cases_per_100k = updates.attributes.cases_per_100k
-                casesData.cases = updates.attributes.cases
-                casesData.ade = updates.attributes.ade
-                responseCasesModel.append(casesData)
-                print(responseCasesModel)
-            }
-            print(newsUpdateDataStore)
-            // print(newsUpdateDataStore)
+
+                for updates in newsUpdateDataStore.features {
+                    var casesData = SafeZone()
+                    
+                    let country = String(updates.attributes.county!)
+                    casesData.county = String(country.dropFirst(2))
+                    
+                    casesData.last_update = updates.attributes.last_update
+                    casesData.cases = String(updates.attributes.cases!)
+                    casesData.county = updates.attributes.county
+                    casesData.status = safeZoneStatus
+                    responseCasesModel.append(casesData)
+                }
             
         } catch {
-            self.handleError(title: "Error", message: "Something Went Wrong!")
+            print(error)
         }
         return responseCasesModel
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateTableCell", for: indexPath) as! UpdateTableCell
+            
+        cell.cases.text = "\(String(describing: responseData[indexPath.row].cases))"
+        cell.county.text = responseData[indexPath.row].county
+        cell.date.text = responseData[indexPath.row].last_update
+        cell.phaseImage.image = UIImage(named: "virus")
+        cell.status.text = responseData[indexPath.row].status
+        return cell
     }
     
   
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showSafetyTips", sender: indexPath)
+        self.performSegue(withIdentifier: "updateStatus", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSafetyTips" {
+        if segue.identifier == "updateStatus" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! CaseDetailViewController
-//                destinationController.cases = String(responseData[indexPath.row].cases!)
-//                destinationController.location = responseData[indexPath.row].county
-//                destinationController.last_update = responseData[indexPath.row].last_update
+                let destinationController = segue.destination as! SafeTipsTableViewController
+                destinationController.ruleStatus = responseData[indexPath.row].status
             }
         }
     }
@@ -153,6 +208,5 @@ class SafeZoneTableViewController: UITableViewController, UISearchResultsUpdatin
         app.addAction(okButton)
         self.present(app, animated: true, completion: nil)
     }
-
     
 }

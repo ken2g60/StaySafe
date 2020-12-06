@@ -9,7 +9,11 @@ import UIKit
 
 class SafeTipsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var safeTipName: UILabel!
+    @IBOutlet weak var safeTipName: UILabel! {
+        didSet {
+            safeTipName.numberOfLines = 0
+        }
+    }
     @IBOutlet weak var safeTipImage: UIImageView!
     
     override func awakeFromNib() {

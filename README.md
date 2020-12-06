@@ -15,9 +15,9 @@ Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Co
 # WalkThrough Pages
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
+    <td>Page 1</td>
+     <td>Page 2</td>
+     <td>Page 3</td>
   </tr>
   <tr>
     <td><img src="Documentation/page-1.png" width=270 height=480></td>
@@ -33,9 +33,20 @@ The app make request to the API for new data using the URLSession GET request me
 This is the general overview of the APP where users can view new updates from the API by requesting to get the data using the URLSession GET request.
 
 # Safe Zone 
-This display to users by using specific keywords in the searchbar to get the data from the API e.g ["green", "yellow", "red", "dark-red"] and makes a request to the API to get the data and populate it in the tableview.This educates the users to protect themselves from getting the virus by following saftey measures such as keeping distance, wear a mask or washing hands. 
+This display to users by using specific keywords in the searchbar to get the data from the API e.g ["green", "yellow", "red", "dark-red"] and makes a request to the API to get the data and populate it in the tableview.This educates the users to protect themselves from getting the virus by following saftey measures such as keeping distance, wear a mask or washing hands.
 
-![alt-text-1](Documentation/safe-zone-1.png "Safe Zone Page") ![alt-text-2](Documentation/safe-zone-loading.png "Loading") ![alt-text-3](Documentation/safe-zone-data.png "Safe Zone ")
+<table>
+  <tr>
+    <td>Safe Zone Description</td>
+     <td>Loading Data</td>
+     <td>Safe Zone Data</td>
+  </tr>
+  <tr>
+    <td><img src="Documentation/safe-zone-1.png" width=270 height=480></td>
+    <td><img src="Documentation/safe-zone-loading.png" width=270 height=480></td>
+    <td><img src="Documentation/safe-zone-data.png" width=270 height=480></td>
+  </tr>
+ </table>
 
 # Safe Zone Detail View 
 Displays to the users satefy measures they need to use to protect themselves and avoid the spread of the virus.

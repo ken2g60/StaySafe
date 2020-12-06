@@ -13,7 +13,7 @@ Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Co
 - Codable 
 
 # WalkThrough Pages
-<img src = "Documentation/page-1.png" width ="200" /> <img src = "Documentation/page-2.png" width ="200" /> <img src = "Documentation/page-3.png" width ="200" />
+![alt-text-1](Documentation/page-1.png "First Page") ![alt-text-2](Documentation/page-2.png "Second Page") ![alt-text-3](Documentation/page-3.png "Third Page")
 
 # Networking 
 The app make request to the API for new data using the URLSession GET request method to get the data to be populated in the tableview.
@@ -24,7 +24,7 @@ This is the general overview of the APP where users can view new updates from th
 # Safe Zone 
 This display to users by using specific keywords in the searchbar to get the data from the API e.g ["green", "yellow", "red", "dark-red"] and makes a request to the API to get the data and populate it in the tableview.This educates the users to protect themselves from getting the virus by following saftey measures such as keeping distance, wear a mask or washing hands. 
 
-![alt-text-1](image1.png "title-1")
+![alt-text-1](Documentation/safe-zone-1.png "Safe Zone Page") ![alt-text-2](Documentation/safe-zone-loading.png "Loading") ![alt-text-3](Documentation/safe-zone-data.png "Safe Zone Data")
 
 # Safe Zone Detail View 
 Displays to the users satefy measures they need to use to protect themselves and avoid the spread of the virus.

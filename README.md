@@ -10,7 +10,14 @@ Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Co
 - Firebase Notification
 - Get Users Location using CoreLocation
 - UITableView
-- Codable 
+- Codable
+
+Clone the Project 
+`git clone https://github.com/ken2g60/StaySafe.git`
+
+Update the cocopod 
+`pod update`
+
 
 # WalkThrough Pages
 <table>

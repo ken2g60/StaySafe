@@ -12,7 +12,6 @@ target 'StaySafe' do
 
   # Add the pod for Firebase Cloud Messaging
   pod 'Firebase/Messaging'
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'MBProgressHUD'
 
 end

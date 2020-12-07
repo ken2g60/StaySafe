@@ -6,3 +6,4 @@ build
 !*.xcworkspace/contents.xcworkspacedata
 
 Pods/
+Podfile.lock

@@ -1,6 +1,6 @@
 # StaySafe 
 
-Is an iOS Project to track and listen to the lastest covid-19 data from NPGEO Corona API for notify users within a particular location.
+Is an iOS Project to track the lastest covid-19 data from NPGEO Corona API to notify users within a particular location.
 
 # Concept Used
 - MVC Architecture

@@ -39,6 +39,8 @@ The app make request to the API for new data using the URLSession GET request me
 # Home 
 This is the general overview of the APP where users can view new updates from the API by requesting to get the data using the URLSession GET request.
 
+<img src="Documentation/home.png" width=270 height=480>
+
 # Safe Zone 
 This display to users by using specific keywords in the searchbar to get the data from the API e.g ["green", "yellow", "red", "dark-red"] and makes a request to the API to get the data and populate it in the tableview.
 This educates the users to protect themselves from getting the virus by following saftey measures such as keeping distance, wear a mask or washing hands.

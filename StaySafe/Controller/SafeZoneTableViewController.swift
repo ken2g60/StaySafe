@@ -141,7 +141,7 @@ class SafeZoneTableViewController: UITableViewController, UISearchResultsUpdatin
             if let data = data {
                 self.responseData = self.parseJSONData(data: data)
                 
-                OperationQueue.main.addOperation {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                     MBProgressHUD.hide(for: self.view, animated: true)
                 }

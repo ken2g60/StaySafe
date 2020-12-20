@@ -31,6 +31,7 @@ class HomeTableViewController: UITableViewController {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,9 +68,11 @@ class HomeTableViewController: UITableViewController {
             if let data = data {
                 self.responseData = self.parseJSONData(data: data)
                 
-                OperationQueue.main.addOperation {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.hideIndicator()
+        
+                    
                 }
                
             }
@@ -162,7 +165,6 @@ class HomeTableViewController: UITableViewController {
         let safeURL = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         let task = URLSession.shared.dataTask(with: URL(string: safeURL)!) { (data, response, error) in
             if let error = error {
-                print(error.localizedDescription)
                 self.handleError(title: "Error", message: "Something Went Wrong")
             }
             
